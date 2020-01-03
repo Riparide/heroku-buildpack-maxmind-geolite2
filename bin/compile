@@ -25,7 +25,7 @@ MAXMIND_LICENSE_KEY=`cat $ENV_DIR/MAXMIND_LICENSE_KEY`
 mkdir -p $CACHE_DIR
 
 
-ARCHIVE="$CACHE_DIR/$MAXMIND_FULL_DB_NAME.mmdb.gz"
+ARCHIVE="$CACHE_DIR/$MAXMIND_FULL_DB_NAME.tar.gz"
 CHECKSUM_FILE="$CACHE_DIR/$MAXMIND_FULL_DB_NAME.md5"
 DB="$CACHE_DIR/$MAXMIND_FULL_DB_NAME.mmdb"
 LAST="$CACHE_DIR/$MAXMIND_FULL_DB_NAME.last"
@@ -69,7 +69,7 @@ if [ ! -f $DB ]; then
 
   echo "-----> $MAXMIND_FULL_DB_NAME: Extracting $ARCHIVE"
 
-  gunzip $ARCHIVE
+  tar xzf $ARCHIVE -C $CACHE_DIR --strip-components=1
 
   touch $LAST
 else
